@@ -19,7 +19,7 @@ export class CharacterService {
   constructor(private http: HttpClient) { }
 
   getCharacters(): Observable<any> {
-    return this.http.get(`${this.url}/v1/public/characters?ts=${this.ts}&apikey=${this.apiKey}&hash=${this.hash}`)
+    return this.http.get(`${this.url}/v1/public/characters?ts=${this.ts}&apikey=${this.apiKey}&hash=${this.hash}&limit=100`)
       .pipe(
         map(res => {
           console.log('Raw:', res);
@@ -29,7 +29,7 @@ export class CharacterService {
   }
 
   searchCharacter(name: string): Observable<any> {
-    return this.http.get(`${this.url}/v1/public/characters?ts=${this.ts}&name=${name}&apikey=${this.apiKey}&hash=${this.hash}`)
+    return this.http.get(`${this.url}/v1/public/characters?ts=${this.ts}&nameStartsWith=${name}&apikey=${this.apiKey}&hash=${this.hash}&limit=100`)
       .pipe(
         map(res => {
           console.log('Raw:', res);

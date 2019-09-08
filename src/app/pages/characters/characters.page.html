@@ -8,14 +8,16 @@
   <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>
 
   <ion-list>
-    <ion-item button *ngFor="let item of (results | async)" [routerLink]="['/', 'characters', item.id]">
+    <ion-item button *ngFor="let item of (results | async) | paginate: { itemsPerPage: 20, currentPage: p }"
+      [routerLink]="['/', 'characters', item.id]">
       {{ item.name }}
 
-      <ion-avatar slot="start">
-        <img [src]="item.thumbnail.path">
-      </ion-avatar>
       <ion-icon slot="end" name="videocam"></ion-icon>
     </ion-item>
   </ion-list>
+
+  <pagination-controls (pageChange)="p = $event" autoHide="true" responsive="true"
+    screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+  </pagination-controls>
 
 </ion-content>

@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 export class CharactersPage implements OnInit {
   results: Observable<any>;
   searchTerm = '';
+  p: number = 1;
 
   constructor(private characterService: CharacterService) { }
 
@@ -21,7 +22,8 @@ export class CharactersPage implements OnInit {
   }
 
   searchChanged() {
-    this.results = this.characterService.searchCharacter(this.searchTerm);
+    if (this.searchTerm) this.results = this.characterService.searchCharacter(this.searchTerm);
+    else this.results = this.characterService.getCharacters();
 
     // this.results.subscribe(res => {
 

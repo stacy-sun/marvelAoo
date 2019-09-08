@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/characters"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Character Comics</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let item of (comics$ | async) | paginate: { itemsPerPage: 10, currentPage: p }">
+        <ion-card>
+          <ion-card-header>
+            <img [src]="item.thumbnail.path + '/landscape_xlarge.' + item.thumbnail.extension" />
+            <ion-card-title>{{ item.title }}</ion-card-title>
+            <ion-card-subtitle>Series: {{ item.series.name }}</ion-card-subtitle>
+          </ion-card-header>
+
+          <ion-card-content>
+            {{ item.description ? item.description : 'No description available.' }}
+
+            <a [title]="item.title + ' details'" [routerLink]="['/', 'comics', item.id]">
+              <ion-button expand="full">View Details</ion-button>
+            </a>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <pagination-controls (pageChange)="p = $event" autoHide="true" responsive="true"
+    screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+  </pagination-controls>
+
+</ion-content>

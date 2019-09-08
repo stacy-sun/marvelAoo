@@ -22,7 +22,6 @@ export class CharacterService {
     return this.http.get(`${this.url}/v1/public/characters?ts=${this.ts}&apikey=${this.apiKey}&hash=${this.hash}&limit=100`)
       .pipe(
         map(res => {
-          console.log('Raw:', res);
           return res['data'].results;
         })
       )
@@ -32,7 +31,6 @@ export class CharacterService {
     return this.http.get(`${this.url}/v1/public/characters?ts=${this.ts}&nameStartsWith=${name}&apikey=${this.apiKey}&hash=${this.hash}&limit=100`)
       .pipe(
         map(res => {
-          console.log('Raw:', res);
           return res['data'].results;
         })
       )
@@ -40,5 +38,18 @@ export class CharacterService {
 
   getCharacterDetails(id) {
     return this.http.get(`${this.url}/v1/public/characters/${id}?ts=${this.ts}&apikey=${this.apiKey}&hash=${this.hash}`)
+  }
+
+  getCharacterComics(id: string): Observable<any> {
+    return this.http.get(`${this.url}/v1/public/characters/${id}/comics?ts=${this.ts}&apikey=${this.apiKey}&hash=${this.hash}`)
+      .pipe(
+        map(res => {
+          return res['data'].results;
+        })
+      )
+  }
+
+  getComicDetails(comicId) {
+    return this.http.get(`${this.url}/v1/public/comics/${comicId}?ts=${this.ts}&apikey=${this.apiKey}&hash=${this.hash}`)
   }
 }

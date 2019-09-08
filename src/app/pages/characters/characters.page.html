@@ -1,17 +1,16 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>characters</ion-title>
+    <ion-title>Characters</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>
 
   <ion-list>
-    <ion-item button *ngFor="let item of (results | async) | paginate: { itemsPerPage: 20, currentPage: p }"
+    <ion-item button *ngFor="let item of (results$ | async) | paginate: { itemsPerPage: 20, currentPage: p }"
       [routerLink]="['/', 'characters', item.id]">
       {{ item.name }}
-
       <ion-icon slot="end" name="videocam"></ion-icon>
     </ion-item>
   </ion-list>

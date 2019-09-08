@@ -8,26 +8,19 @@ import { Observable } from 'rxjs';
   styleUrls: ['./characters.page.scss'],
 })
 export class CharactersPage implements OnInit {
-  results: Observable<any>;
+  results$: Observable<any>;
   searchTerm = '';
   p: number = 1;
 
   constructor(private characterService: CharacterService) { }
 
   ngOnInit() {
-    this.results = this.characterService.getCharacters();
-    this.results.subscribe(res => {
-      console.log('res:', res);
-    })
+    this.results$ = this.characterService.getCharacters();
   }
 
   searchChanged() {
-    if (this.searchTerm) this.results = this.characterService.searchCharacter(this.searchTerm);
-    else this.results = this.characterService.getCharacters();
-
-    // this.results.subscribe(res => {
-
-    // })
+    if (this.searchTerm) this.results$ = this.characterService.searchCharacter(this.searchTerm);
+    else this.results$ = this.characterService.getCharacters();
   }
 
 }

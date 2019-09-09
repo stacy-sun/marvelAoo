@@ -1,29 +1,28 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/characters"></ion-back-button>
     </ion-buttons>
-    <ion-title>Character Comics</ion-title>
+    <ion-title class="ion-text-center">Character Comics</ion-title>
+    <ion-icon slot="end" class="home-btn" name="home" size="large" [routerLink]="['/characters']"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col size="6" *ngFor="let item of (comics$ | async) | paginate: { itemsPerPage: 10, currentPage: p }">
-        <ion-card>
+      <ion-col *ngFor="let item of (comics$ | async) | paginate: { itemsPerPage: 10, currentPage: p }" sizeXs="12"
+        sizeSm="6" sizeLg="4" sizeXl="3">
+        <ion-card [routerLink]="['/', 'comics', item.id]">
+          <img [src]="item.thumbnail.path + '/landscape_xlarge.' + item.thumbnail.extension" />
           <ion-card-header>
-            <img [src]="item.thumbnail.path + '/landscape_xlarge.' + item.thumbnail.extension" />
             <ion-card-title>{{ item.title }}</ion-card-title>
-            <ion-card-subtitle>Series: {{ item.series.name }}</ion-card-subtitle>
           </ion-card-header>
 
           <ion-card-content>
-            {{ item.description ? item.description : 'No description available.' }}
-
-            <a [title]="item.title + ' details'" [routerLink]="['/', 'comics', item.id]">
-              <ion-button expand="full">View Details</ion-button>
-            </a>
+            <div class="comics-card-description">
+              Series: {{ item.series.name }}
+            </div>
           </ion-card-content>
         </ion-card>
       </ion-col>

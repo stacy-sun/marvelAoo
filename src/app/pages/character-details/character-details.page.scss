@@ -1,4 +1,14 @@
-.character-img {
-    max-height: 30vh;
-    object-fit: contain;
+.character-detail-description {
+    margin-bottom: 1rem;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.home-btn {
+    margin-right: 10px;
+
+    &:hover { cursor: pointer;}
+    &:focus {outline:0;}
 }

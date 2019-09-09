@@ -1,0 +1,18 @@
+.pagination {
+    text-align: center;
+  }
+
+.pagination::ng-deep .ngx-pagination .current {
+    background-color: var(--ion-color-tertiary);
+}
+
+.comics-card-description {
+    margin-bottom: 1rem;
+}
+
+.home-btn {
+    margin-right: 10px;
+
+    &:hover { cursor: pointer;}
+    &:focus {outline:0;}
+}

@@ -1,26 +1,33 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/characters"></ion-back-button>
     </ion-buttons>
-    <ion-title>Comic Details</ion-title>
+    <ion-title class="ion-text-center">Comic Details</ion-title>
+    <ion-icon slot="end" class="home-btn" name="home" size="large" [routerLink]="['/characters']"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card *ngIf="comic">
-    <ion-card-header>
-      <ion-card-title>
-        {{ comic.title }}
-      </ion-card-title>
-      <ion-card-subtitle>Format: {{ comic.format }}</ion-card-subtitle>
-    </ion-card-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" sizeMd="6" offsetMd="3" sizeLg="4" offsetLg="4">
+        <ion-card *ngIf="comic">
+          <ion-card-header>
+            <ion-card-title>
+              {{ comic.title }}
+            </ion-card-title>
+            <ion-card-subtitle>Format: {{ comic.format }}</ion-card-subtitle>
+          </ion-card-header>
 
-    <ion-card-content>
-      <img [src]="comic.thumbnail.path + '/landscape_xlarge.' + comic.thumbnail.extension" />
-
-      {{ comic.description ? comic.description : 'No description available.'}}
-
-    </ion-card-content>
-  </ion-card>
+          <ion-card-content>
+            <img [src]="comic.thumbnail.path + '/landscape_xlarge.' + comic.thumbnail.extension" />
+            <div class="comic-detail-description">
+              {{ comic.description ? comic.description : 'No description available.'}}
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

@@ -1,11 +1,13 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="tertiary">
     <ion-title text-center>Characters</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>
+  <ion-searchbar class="search-bar" [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"
+    placeholder="Search a Marvel character">
+  </ion-searchbar>
 
   <ion-list>
     <ion-item button *ngFor="let item of (results$ | async) | paginate: { itemsPerPage: 20, currentPage: p }"
@@ -19,7 +21,8 @@
   </ion-list>
 
   <pagination-controls (pageChange)="p = $event" autoHide="true" responsive="true"
-    screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+    screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page"
+    class="pagination">
   </pagination-controls>
 
 </ion-content>

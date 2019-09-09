@@ -1,0 +1,13 @@
+.search-bar {
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}
+
+.pagination {
+    text-align: center;
+
+  }
+
+.pagination::ng-deep .ngx-pagination .current {
+    background-color: var(--ion-color-tertiary);
+}

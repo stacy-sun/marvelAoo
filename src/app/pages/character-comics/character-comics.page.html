@@ -16,8 +16,8 @@
   <ng-template #loaded>
     <ion-grid>
       <ion-row>
-        <ion-col *ngFor="let item of comics | paginate: { itemsPerPage: 10, currentPage: p }" sizeXs="12" sizeSm="6"
-          sizeLg="4" sizeXl="3">
+        <ion-col *ngFor="let item of comics | paginate: { itemsPerPage: 12, currentPage: p }" sizeXs="12" sizeSm="6"
+          sizeLg="3">
           <ion-card [routerLink]="['/', 'comics', item.id]">
             <img [src]="item.thumbnail.path + '/landscape_xlarge.' + item.thumbnail.extension" />
             <ion-card-header>

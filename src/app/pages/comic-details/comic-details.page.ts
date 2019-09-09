@@ -16,7 +16,6 @@ export class ComicDetailsPage implements OnInit {
     let comicId = this.activatedRoute.snapshot.paramMap.get('comicId');
 
     this.characterService.getComicDetails(comicId).subscribe(res => {
-      console.log('res:', res['data'].results[0])
       this.comic = res['data'].results[0];
     })
   }

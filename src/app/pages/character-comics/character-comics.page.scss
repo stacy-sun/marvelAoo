@@ -16,3 +16,15 @@
     &:hover { cursor: pointer;}
     &:focus {outline:0;}
 }
+
+.loader-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+
+    img {
+        width: 4rem;
+    }
+}

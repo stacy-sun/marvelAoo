@@ -9,18 +9,24 @@
     placeholder="Search a Marvel character">
   </ion-searchbar>
 
-  <ion-list>
-    <ion-item button *ngFor="let item of (results$ | async) | paginate: { itemsPerPage: 20, currentPage: p }"
-      [routerLink]="['/', 'characters', item.id]">
-      <ion-avatar slot="start">
-        <img [src]="item.thumbnail.path + '/landscape_xlarge.' + item.thumbnail.extension">
-      </ion-avatar>
-      {{ item.name }}
-      <ion-icon slot="end" name="arrow-forward"></ion-icon>
-    </ion-item>
-  </ion-list>
+  <div class="loader-container" *ngIf="loading else loaded">
+    <img src="assets/img/spinner.svg">
+  </div>
 
-  <pagination-controls (pageChange)="p = $event" autoHide="true" responsive="true"
+  <ng-template #loaded>
+    <ion-list>
+      <ion-item button *ngFor="let item of results | paginate: { itemsPerPage: 20, currentPage: p }"
+        [routerLink]="['/', 'characters', item.id]">
+        <ion-avatar slot="start">
+          <img [src]="item.thumbnail.path + '/landscape_xlarge.' + item.thumbnail.extension">
+        </ion-avatar>
+        {{ item.name }}
+        <ion-icon slot="end" name="arrow-forward"></ion-icon>
+      </ion-item>
+    </ion-list>
+  </ng-template>
+
+  <pagination-controls *ngIf="!loading" (pageChange)="p = $event" autoHide="true" responsive="true"
     screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page"
     class="pagination">
   </pagination-controls>

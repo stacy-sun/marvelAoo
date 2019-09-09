@@ -8,14 +8,18 @@ import { CharacterService } from 'src/app/services/character.service';
   styleUrls: ['./character-comics.page.scss'],
 })
 export class CharacterComicsPage implements OnInit {
-  comics$;
+  comics;
+  loading = true;
 
   constructor(private activatedRoute: ActivatedRoute, private characterService: CharacterService) { }
 
   ngOnInit() {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
 
-    this.comics$ = this.characterService.getCharacterComics(id);
+    this.characterService.getCharacterComics(id).subscribe(res => {
+      this.comics = res['data'].results;
+      this.loading = false;
+    })
   }
 
 }

@@ -11,3 +11,15 @@
 .pagination::ng-deep .ngx-pagination .current {
     background-color: var(--ion-color-tertiary);
 }
+
+.loader-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+
+    img {
+        width: 4rem;
+    }
+}

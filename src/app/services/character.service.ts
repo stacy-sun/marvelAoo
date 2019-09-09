@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import * as CryptoJS from 'crypto-js';
 
 @Injectable({
@@ -18,38 +16,23 @@ export class CharacterService {
 
   constructor(private http: HttpClient) { }
 
-  getCharacters(): Observable<any> {
+  getCharacters() {
     return this.http.get(`${this.url}/v1/public/characters?ts=${this.ts}&apikey=${this.apiKey}&hash=${this.hash}&limit=50`)
-      .pipe(
-        map(res => {
-          return res['data'].results;
-        })
-      )
   }
 
-  searchCharacter(name: string): Observable<any> {
+  searchCharacter(name: string) {
     return this.http.get(`${this.url}/v1/public/characters?ts=${this.ts}&nameStartsWith=${name}&apikey=${this.apiKey}&hash=${this.hash}&limit=30`)
-      .pipe(
-        map(res => {
-          return res['data'].results;
-        })
-      )
   }
 
-  getCharacterDetails(id) {
+  getCharacterDetails(id: string) {
     return this.http.get(`${this.url}/v1/public/characters/${id}?ts=${this.ts}&apikey=${this.apiKey}&hash=${this.hash}`)
   }
 
-  getCharacterComics(id: string): Observable<any> {
+  getCharacterComics(id: string) {
     return this.http.get(`${this.url}/v1/public/characters/${id}/comics?ts=${this.ts}&apikey=${this.apiKey}&hash=${this.hash}`)
-      .pipe(
-        map(res => {
-          return res['data'].results;
-        })
-      )
   }
 
-  getComicDetails(comicId) {
+  getComicDetails(comicId: string) {
     return this.http.get(`${this.url}/v1/public/comics/${comicId}?ts=${this.ts}&apikey=${this.apiKey}&hash=${this.hash}`)
   }
 }
